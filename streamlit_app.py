@@ -4,6 +4,7 @@ import math
 import pandas as pd
 import streamlit as st
 import snowflake.connector as sf
+import snowflake.snowpark.session as Session
 
 """
 # Welcome to Streamlit!
@@ -16,6 +17,21 @@ forums](https://discuss.streamlit.io).
 In the meantime, below is an example of what you can do with just a few lines of code:
 """
 
+def init_connection():
+    return snowflake.connector.connect(
+        **st.secrets[“snowflake”], client_session_keep_alive=True
+    )
+conn = init_connection()
+
+def run_query(query):
+    with conn.cursor() as cur:
+        cur.execute(query)
+        dat = cur.fetchall()
+        df = pd.DataFrame(dat, columns=[col[0] for col in cur.description])
+        return df
+df = run_query(“SELECT * from FOOD_INSPECTIONS_TEMP”)
+
+print(df)
 
 with st.echo(code_location='below'):
     total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
