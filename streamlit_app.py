@@ -19,7 +19,7 @@ In the meantime, below is an example of what you can do with just a few lines of
 
 def init_connection():
     return snowflake.connector.connect(
-        **st.secrets[“snowflake”], client_session_keep_alive=True
+        **st.secrets["snowflake"], client_session_keep_alive=True
     )
 conn = init_connection()
 
@@ -29,9 +29,9 @@ def run_query(query):
         dat = cur.fetchall()
         df = pd.DataFrame(dat, columns=[col[0] for col in cur.description])
         return df
-df = run_query(“SELECT * from FOOD_INSPECTIONS_TEMP”)
+df = run_query("SELECT * from FOOD_INSPECTIONS_TEMP")
 
-print(df)
+st.dataframe(df)
 
 with st.echo(code_location='below'):
     total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
