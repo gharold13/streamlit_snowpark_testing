@@ -4,7 +4,6 @@ import math
 import pandas as pd
 import streamlit as st
 import snowflake.connector
-import snowflake.snowpark.session as Session
 
 """
 # Welcome to Streamlit!
