@@ -8,14 +8,6 @@ import sys
 from snowflake.snowpark.session import Session
 from snowflake.snowpark.functions import avg, sum, col,lit
 
-"""
-# Welcome to Streamlit!
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
-In the meantime, below is an example of what you can do with just a few lines of code:
-"""
-
 st.set_page_config(
      page_title="Environment Data Atlas",
      page_icon="🧊",
@@ -26,6 +18,14 @@ st.set_page_config(
          'About': "This is an *extremely* cool app powered by Snowpark for Python, Streamlit, and Snowflake Data Marketplace"
      }
 )
+
+"""
+# Welcome to Streamlit!
+Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:
+If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
+forums](https://discuss.streamlit.io).
+In the meantime, below is an example of what you can do with just a few lines of code:
+"""
 
 # Create Session object
 def create_session_object():
