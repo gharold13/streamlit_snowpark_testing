@@ -70,6 +70,6 @@ def load_data(session):
             pd_df_co2_top_n = snow_df_co2.filter(col('Total CO2 Emissions') > emissions_threshold).to_pandas()
             st.bar_chart(data=pd_df_co2_top_n.set_index('Location Name'), width=850, height=500, use_container_width=True)
 
-
-session = create_session_object()
-load_data(session)
+if __name__ == "__main__":
+    session = create_session_object()
+    load_data(session)
