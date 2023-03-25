@@ -76,5 +76,5 @@ def load_data(session):
 
     print("Checkpoint 2")
 
-#session = create_session_object()
-#load_data(session)s
+session = create_session_object()
+load_data(session)
