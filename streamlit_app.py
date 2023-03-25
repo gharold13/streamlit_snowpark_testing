@@ -20,7 +20,7 @@ def init_connection():
 
 conn = init_connection()
 
-@st.cache_data
+#@st.cache_data
 def run_query(query):
     with conn.cursor() as cur:
         cur.execute(query)
