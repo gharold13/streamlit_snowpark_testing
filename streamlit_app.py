@@ -44,6 +44,8 @@ def load_data(session):
     snow_df_waste = session.table("ENVIRONMENT.UNENVDB2018").filter(col('Variable Name') == 'Municipal waste collected')
     snow_df_waste = snow_df_waste.group_by('Location Name').agg(sum('$12').alias("Total Municipal Waste")).sort('Location Name')
     
+    print('Checkpoint 1')
+
     # Convert Snowpark DataFrames to Pandas DataFrames for Streamlit
     pd_df_co2  = snow_df_co2.to_pandas()
     pd_df_land = snow_df_land.to_pandas() 
@@ -69,6 +71,8 @@ def load_data(session):
             emissions_threshold = st.slider(label='Emissions Threshold',min_value=5000, value=20000, step=5000)
             pd_df_co2_top_n = snow_df_co2.filter(col('Total CO2 Emissions') > emissions_threshold).to_pandas()
             st.bar_chart(data=pd_df_co2_top_n.set_index('Location Name'), width=850, height=500, use_container_width=True)
+
+    print("Checkpoint 2")
 
 if __name__ == "__main__":
     session = create_session_object()
