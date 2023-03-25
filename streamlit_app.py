@@ -29,15 +29,7 @@ In the meantime, below is an example of what you can do with just a few lines of
 
 # Create Session object
 def create_session_object():
-    connection_parameters = {
-      "account": "<account_identifier>",
-      "user": "<username>",
-      "password": "<password>",
-      "role": "<role_name>",
-      "warehouse": "<warehouse_name>",
-      "database": "KNOEMA_ENVIRONMENT_DATA_ATLAS",
-      "schema": "ENVIRONMENT"
-    }
+    connection_parameters = st.secrets["snowflake"]
     session = Session.builder.configs(connection_parameters).create()
     print(session.sql('select current_warehouse(), current_database(), current_schema()').collect())
     return session
