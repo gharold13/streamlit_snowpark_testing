@@ -19,6 +19,8 @@ st.set_page_config(
      }
 )
 
+st.write(st.secrets["snowflake"])
+
 # Create Session object
 def create_session_object():
     connection_parameters = st.secrets["snowflake"]
