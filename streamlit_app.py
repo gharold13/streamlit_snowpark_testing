@@ -74,6 +74,5 @@ def load_data(session):
 
     print("Checkpoint 2")
 
-if __name__ == "__main__":
-    session = create_session_object()
-    load_data(session)
+session = create_session_object()
+load_data(session)
