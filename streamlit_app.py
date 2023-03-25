@@ -5,6 +5,7 @@ import pandas as pd
 import streamlit as st
 import snowflake.connector
 import sys
+from snowflake.snowpark import Session
 
 """
 # Welcome to Streamlit!
