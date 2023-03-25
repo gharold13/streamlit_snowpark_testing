@@ -5,7 +5,8 @@ import pandas as pd
 import streamlit as st
 import snowflake.connector
 import sys
-from snowflake.snowpark import Session
+from snowflake.snowpark.session import Session
+from snowflake.snowpark.functions import avg, sum, col,lit
 
 """
 # Welcome to Streamlit!
@@ -14,30 +15,6 @@ If you have any questions, checkout our [documentation](https://docs.streamlit.i
 forums](https://discuss.streamlit.io).
 In the meantime, below is an example of what you can do with just a few lines of code:
 """
-"""
-def init_connection():
-    return snowflake.connector.connect(
-        **st.secrets["snowflake"], client_session_keep_alive=True
-    )
-
-conn = init_connection()
-
-@st.cache_data
-def run_query(query):
-    with conn.cursor() as cur:
-        cur.execute(query)
-        dat = cur.fetchall()
-        df = pd.DataFrame(dat, columns=[col[0] for col in cur.description])
-        return df
-
-df = run_query("SELECT * from FOOD_INSPECTIONS_FULL limit 500")
-"""
-
-# Snowpark
-from snowflake.snowpark.session import Session
-from snowflake.snowpark.functions import avg, sum, col,lit
-import streamlit as st
-import pandas as pd
 
 st.set_page_config(
      page_title="Environment Data Atlas",
@@ -112,3 +89,23 @@ def load_data(session):
 if __name__ == "__main__":
     session = create_session_object()
     load_data(session)
+
+
+"""
+def init_connection():
+    return snowflake.connector.connect(
+        **st.secrets["snowflake"], client_session_keep_alive=True
+    )
+
+conn = init_connection()
+
+@st.cache_data
+def run_query(query):
+    with conn.cursor() as cur:
+        cur.execute(query)
+        dat = cur.fetchall()
+        df = pd.DataFrame(dat, columns=[col[0] for col in cur.description])
+        return df
+
+df = run_query("SELECT * from FOOD_INSPECTIONS_FULL limit 500")
+"""
