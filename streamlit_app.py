@@ -74,5 +74,7 @@ def load_data(session):
 
     print("Checkpoint 2")
 
-session = create_session_object()
-load_data(session)
+print(st.secrets["snowflake"])
+
+#session = create_session_object()
+#load_data(session)s
